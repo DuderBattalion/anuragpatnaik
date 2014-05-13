@@ -158,17 +158,17 @@ FILE_UPLOAD_PERMISSIONS = 0644
 DATABASES = {
     "default": {
         # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
-        "ENGINE": "django.db.backends.",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
         # DB name or path to database file if using sqlite3.
-        "NAME": "",
+        "NAME": "duderbattalion",
         # Not used with sqlite3.
-        "USER": "",
+        "USER": "duderbattalion",
         # Not used with sqlite3.
-        "PASSWORD": "",
+        "PASSWORD": "duderbattalion",
         # Set to empty string for localhost. Not used with sqlite3.
         "HOST": "",
         # Set to empty string for default. Not used with sqlite3.
-        "PORT": "",
+        "PORT": "5432",
     }
 }
 

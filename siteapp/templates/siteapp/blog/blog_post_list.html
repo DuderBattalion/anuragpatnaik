@@ -1,0 +1,17 @@
+{% extends "siteapp/blog/base_blog.html" %}
+{% load staticfiles %}
+{% load i18n future mezzanine_tags blog_tags keyword_tags disqus_tags %}
+
+{% block title %}Blog - Anurag Patnaik{% endblock %}
+
+{% block blog_list %}
+<div class="container blog-list-top-offset">
+	{% for blog_post in blog_posts.object_list %}
+	{% editable blog_post.title %}
+	<h2>
+	    <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+	</h2>
+	{% endeditable %}
+	{% endfor %}
+</div>
+{% endblock %}
