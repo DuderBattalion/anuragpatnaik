@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<div class="container">
     {% block navbar %} 
     <div class="navbar-wrapper">
         <div class="container">
@@ -49,10 +50,16 @@
         </div>
     </div>
     {% endblock %}
-
-    {% block blog_list %}{% endblock %}
-    {% block twitterbox %}{% endblock %}
-    {% block worth_reading %}{% endblock %}
+    <div class="row blog-list-top-offset">
+        <div class="container col-md-7">
+            {% block blog_list %}{% endblock %}
+        </div>
+        <div class="container col-md-4 col-md-offset-1">
+            {% block twitterbox %}{% endblock %}
+        </div>
+        {% block worth_reading %}{% endblock %}
+    </div>
+</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

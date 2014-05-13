@@ -5,13 +5,43 @@
 {% block title %}Blog - Anurag Patnaik{% endblock %}
 
 {% block blog_list %}
-<div class="container blog-list-top-offset">
+
 	{% for blog_post in blog_posts.object_list %}
-	{% editable blog_post.title %}
-	<h2>
-	    <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
-	</h2>
-	{% endeditable %}
+	
+		<div class="row">
+			<div class="blog-main">
+				<div class="blog-post">
+					<h2 class="blog-post-title">{{ blog_post.title }}</h2>
+					<p class="blog-post-meta">
+						{% trans "Posted by" %}:
+					    {% with blog_post.user as author %}
+					    <a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
+					    {% endwith %}
+					    {% with blog_post.categories.all as categories %}
+					    {% if categories %}
+					    {% trans "in" %}
+					    {% for category in categories %}
+					    <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+					    {% endfor %}
+					    {% endif %}
+					    {% endwith %}
+					    {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
+					</p>
+
+					{% editable blog_post.content %}
+					{{ blog_post.description_from_content|safe }}
+					{% endeditable %}
+				</div>
+			</div>
+		</div>
+	
 	{% endfor %}
-</div>
+
+{% endblock %}
+
+{% block twitterbox %}
+
+	<a class="twitter-timeline"  href="https://twitter.com/anuragpatnaik"  data-widget-id="466306371936215040">Tweets by @anuragpatnaik</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 {% endblock %}
