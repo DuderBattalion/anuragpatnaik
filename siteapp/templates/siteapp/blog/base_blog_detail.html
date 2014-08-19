@@ -51,11 +51,15 @@
     </div>
     {% endblock %}
     <div class="row blog-list-top-offset">
-        <div class="jumbotron">
-            <div class="container">
-            {% block blog_featured_img %}{% endblock %}
+        {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="row">
+                        {% block blog_featured_img %}{% endblock %}
+                    </div>
+                </div>
             </div>
-        </div>
+        {% endif %}
         <div class="container">
             {% block blog_detail %}{% endblock %}
         </div>
